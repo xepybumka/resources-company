@@ -39,11 +39,12 @@
         @foreach ($items as $item)
             <tr>
                 <td class="w-5">{{$item['id']}}</td>
-                <td class="w-20 text-wrap">{{$item['name']}}</td>
-                <td class="w-20 text-wrap">{{$item['denomination']}}</td>
+                <td class="w-10 text-wrap">{{$item['name']}}</td>
+                <td class="w-10 text-wrap">{{$item['denomination']}}</td>
                 <td class="w-10 text-wrap">{{$item['resource_type']}}</td>
                 <td class="w-20 text-wrap">{{$item['resource_storage_name']}}</td>
                 <td class="w-20 text-wrap">{{$item['resource_storage_address']}}</td>
+                <td class="w-20 text-wrap">{{$item['additional_data']}}</td>
                 <td class="w-5">
                     <div class="btn-group">
                         <form method="get" action="#">
