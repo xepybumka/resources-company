@@ -17,8 +17,7 @@
     @endif
 
     <div class="col-6 mb-2">
-{{--        <a class="btn bg-gradient-dark mb-0" href="{{ route('resource.create') }}">--}}
-        <a class="btn bg-gradient-dark mb-0" href="#">
+        <a class="btn bg-gradient-dark mb-0" href="{{ route('resource.create') }}">
             <i class="material-icons text-sm">add</i>
             Добавить
         </a>
@@ -36,22 +35,22 @@
         </tr>
         </thead>
         <tbody>
-        @foreach ($items as $item)
+        @foreach ($resources as $resource)
             <tr>
-                <td class="w-5">{{$item['id']}}</td>
-                <td class="w-10 text-wrap">{{$item['name']}}</td>
-                <td class="w-10 text-wrap">{{$item['denomination']}}</td>
-                <td class="w-10 text-wrap">{{$item['resource_type']}}</td>
-                <td class="w-20 text-wrap">{{$item['resource_storage_name']}}</td>
-                <td class="w-20 text-wrap">{{$item['resource_storage_address']}}</td>
-                <td class="w-20 text-wrap">{{$item['additional_data']}}</td>
+                <td class="w-5">{{$resource['id']}}</td>
+                <td class="w-10 text-wrap">{{$resource['name']}}</td>
+                <td class="w-10 text-wrap">{{$resource['denomination']}}</td>
+                <td class="w-10 text-wrap">{{$resource['resource_type']}}</td>
+                <td class="w-20 text-wrap">{{$resource['resource_storage_name']}}</td>
+                <td class="w-20 text-wrap">{{$resource['resource_storage_address']}}</td>
+                <td class="w-20 text-wrap">{{$resource['additional_data']}}</td>
                 <td class="w-5">
                     <div class="btn-group">
                         <form method="get" action="#">
                             @csrf
                             <button type="submit" class="btn btn-facebook"><i class="far fa-eye">show</i></button>
                         </form>
-                        <form method="get" action="#">
+                        <form method="get" action="{{ route('resource.edit', ['id' => $resource['id']]) }}">
                             @csrf
                             <button type="submit" class="btn btn-info"><i class="fas fa-edit">edit</i></button>
                         </form>
@@ -66,6 +65,6 @@
         @endforeach
         </tbody>
     </table>
-{{--    {{$items->links('core.vendor.pagination.bootstrap-5')}}--}}
+{{--    {{$resources->links('core.vendor.pagination.bootstrap-5')}}--}}
 @endsection
 

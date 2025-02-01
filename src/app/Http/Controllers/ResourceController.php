@@ -2,16 +2,75 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\Resource;
 use Illuminate\View\View;
 
 class ResourceController extends Controller
 {
+
+    /**
+     * @return View
+     */
     public function index(): View
     {
-        $title = 'Предметы';
-        $items = [
+        $title = 'Список ресуорсов';
+        $resources = $this->getResources();
+
+        return view('main.resource.index', [
+            'title' => $title,
+            'resources' => $resources,
+        ]);
+    }
+
+    /**
+     * @return View
+     */
+    public function create(): View
+    {
+        $title = 'Создание: Ресурс';
+        return view('main.resource.create', [
+            'title' => $title
+        ]);
+    }
+
+    /**
+     * @param int $id
+     * @return View
+     */
+    public function edit(int $id): View
+    {
+        $title = 'Редактирование: Ресурс №' . $id;
+        // TODO: Заменить на вывод из бд
+        $resource = $this->getResource($id);
+        return view('main.resource.edit', [
+            'title' => $title,
+            'resource' => $resource
+        ]);
+    }
+
+    //TODO: Доработать, после появления базы данных
+
+//    /**
+//     * @param UpdateResourceRequest $request
+//     * @param int $id
+//     * @return RedirectResponse
+//     * @throws Exception
+//     */
+//    public function update(UpdateResourceRequest $request, int $id)
+//    {
+//        $resource = $this->getResources($id);
+//        $resource->name = (string)$request->name;
+//        $resource->updated_at = new DateTime();
+//        if (!$resource->save()) {
+//            throw new Exception();
+//        }
+//        return redirect()->route('resource.list')->with('success', 'Ресурс ' . $resource->name . ' успешно обновлен!');
+//    }
+
+    // TODO: !Временное решение. Метод заменить на получение данных из БД.
+    private function getResources(?int $id = null): array
+    {
+        $dbResources = [
             [
                 'id' => 1,
                 'name' => 'Счет №5',
@@ -90,9 +149,13 @@ class ResourceController extends Controller
             ],
         ];
 
-        return view('main.resource.index', [
-            'title' => $title,
-            'items' => $items,
-        ]);
+        return $dbResources;
+    }
+
+    private function getResource(int $id): array
+    {
+        $dbResources = $this->getResources();
+        $dbResourceId = array_search($id, array_column($dbResources, 'id'));
+        return $dbResources[$dbResourceId];
     }
 }
