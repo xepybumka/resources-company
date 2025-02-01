@@ -4,8 +4,7 @@
 @section('breadcrumbs', 'Главная')
 
 @section('content')
-{{--    <h1>{{$title}}</h1>--}}
-    <h1>Ресурсы компании</h1>
+    <h1>{{$title}}</h1>
 
     @if(Session::has('success'))
         <div class="alert alert-success">
@@ -37,20 +36,20 @@
         <tbody>
         @foreach ($resources as $resource)
             <tr>
-                <td class="w-5">{{$resource['id']}}</td>
-                <td class="w-10 text-wrap">{{$resource['name']}}</td>
-                <td class="w-10 text-wrap">{{$resource['denomination']}}</td>
-                <td class="w-10 text-wrap">{{$resource['resource_type']}}</td>
-                <td class="w-20 text-wrap">{{$resource['resource_storage_name']}}</td>
-                <td class="w-20 text-wrap">{{$resource['resource_storage_address']}}</td>
-                <td class="w-20 text-wrap">{{$resource['additional_data']}}</td>
+                <td class="w-5">{{$resource->id}}</td>
+                <td class="w-10 text-wrap">{{$resource->name}}</td>
+                <td class="w-10 text-wrap">{{$resource->denomination}}</td>
+                <td class="w-10 text-wrap">{{$resource->resource_type}}</td>
+                <td class="w-20 text-wrap">{{$resource->resource_storage_name}}</td>
+                <td class="w-20 text-wrap">{{$resource->resource_storage_address}}</td>
+                <td class="w-20 text-wrap">{{$resource->additional_data}}</td>
                 <td class="w-5">
                     <div class="btn-group">
                         <form method="get" action="#">
                             @csrf
                             <button type="submit" class="btn btn-facebook"><i class="far fa-eye">show</i></button>
                         </form>
-                        <form method="get" action="{{ route('resource.edit', ['id' => $resource['id']]) }}">
+                        <form method="get" action="{{ route('resource.edit', ['id' => $resource->id]) }}">
                             @csrf
                             <button type="submit" class="btn btn-info"><i class="fas fa-edit">edit</i></button>
                         </form>

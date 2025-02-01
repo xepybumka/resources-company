@@ -44,10 +44,10 @@
 0. Установить необходимый софт: Docker, Docker-compose, composer.
 1. Склонировать репозиторий.
 2. В корне проекта выполнить команду `docker-compose up -d`.
-3. Подключиться к php контейнеру командой `docker exec -it php-resource-company`.
+3. Подключиться к php контейнеру командой `docker exec -it php-resources-company`.
 4. Внутри контейнера выполнить команду `composer install`.
 5. Выполнить миграции для создания структуры базы данных командой `php artisan migrate`.
-6. Выполнить заполнение базы данных тестовыми данными командой `php artisan db:seed`.
+6. Выполнить заполнение базы данных тестовыми данными командой `php artisan db:seed --class=ResourceSeeder`.
 7. Переходим на страницу в браузере: http://localhost:8081/resource
 
 # План на улучшение:
